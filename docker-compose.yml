@@ -1,16 +1,6 @@
 version: "3"
 
 services:
-#  manga:
-#    build:
-#      context: .
-#      dockerfile: ./Dockerfile
-#    image: manga
-#    environment:
-#      - SPRING_PROFILES_ACTIVE=test, docker
-#    ports:
-#      - "8080:8080"
-#      - "8083:8083"
   mongo:
     image: mongo
     environment:
@@ -22,7 +12,18 @@ services:
       - /home/thamires/Desenvolvimento/Docker/Volumes/MongoDB:/data/db
     networks:
       - mongo-compose-network
-
+  manga:
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    image: manga
+    environment:
+      - SPRING_PROFILES_ACTIVE=test, docker
+    ports:
+      - "8080:8080"
+      - "8083:8083"
+    links:
+      - mongo
   mongo-express:
     image: mongo-express
     ports:

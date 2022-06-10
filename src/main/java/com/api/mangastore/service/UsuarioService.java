@@ -1,5 +1,6 @@
 package com.api.mangastore.service;
 
+import com.api.mangastore.entity.Manga;
 import com.api.mangastore.entity.Usuario;
 import com.api.mangastore.repository.UsuarioRepository;
 import lombok.AllArgsConstructor;
@@ -13,7 +14,30 @@ public class UsuarioService {
     @Autowired
     private final UsuarioRepository usuarioRepository;
 
-    public void adicionaUsuario(Usuario usuario){
+    public void addUsuario(Usuario usuario) {
         usuarioRepository.insert(usuario);
     }
+
+    public void updateUsuario(Usuario usuario) {
+        Usuario findUsuario = usuarioRepository.findById(usuario.getId())
+                .orElseThrow(() -> new RuntimeException(String.format("Cannot find Usuario by ID %s", usuario.getId())));
+
+        findUsuario.setName(usuario.getName());
+        findUsuario.setTelefone(usuario.getTelefone());
+        findUsuario.setLogin(usuario.getLogin());
+        findUsuario.setSenha(usuario.getSenha());
+        findUsuario.setEmail(usuario.getEmail());
+        findUsuario.setCpf(usuario.getCpf());
+
+        usuarioRepository.save(findUsuario);
+    }
+
+    public void addMangaUsuario(Manga manga, long idUsuario) {
+        Usuario findUsuario = usuarioRepository.findById(idUsuario)
+                .orElseThrow(() -> new RuntimeException(String.format("Cannot find Usuario by ID %s", idUsuario)));
+
+        findUsuario.getMangas().add(manga);
+        usuarioRepository.save(findUsuario);
+    }
+
 }

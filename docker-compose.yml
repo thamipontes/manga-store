@@ -16,6 +16,7 @@ services:
     build:
       context: .
       dockerfile: ./Dockerfile
+    restart: always
     image: manga
     environment:
       - SPRING_PROFILES_ACTIVE=test, docker

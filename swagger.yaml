@@ -1,0 +1,46 @@
+swagger: "2.0"
+info:
+  version: "1.0.0"
+  title: "Manga-Store"
+host: "localhost:8080"
+tags:
+- name: "user"
+  description: "Operations about user"
+paths:
+  /usuarios:
+    post:
+      tags:
+      - "user"
+      summary: "Create user"
+      operationId: "createUser"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Created user object"
+        required: true
+        schema:
+          $ref: "#/definitions/User"
+      responses:
+        default:
+          description: "successful operation"
+definitions:
+  User:
+    type: "object"
+    properties:
+      id:
+        type: "integer"
+        format: "int64"
+      name:
+        type: "string"
+      cpf:
+        type: "string"
+      login:
+        type: "string"
+      senha:
+        type: "string"
+      email:
+        type: "string"
+      telefone:
+        type: "string"

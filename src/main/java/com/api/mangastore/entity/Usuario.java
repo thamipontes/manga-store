@@ -16,80 +16,30 @@ import java.util.List;
 
 
 @AllArgsConstructor
+@Getter
+@Setter
 @Document("usuarios")
 public class Usuario {
 
     @Id
     @Indexed(unique = true)
     private String id;
-    @NotBlank
+    @NotBlank(message = "Campo Obrigatório")
     private String name;
-    @CPF
+    @CPF(message = "CPF inválido")
     private String cpf;
     private String login;
     private String senha;
-    @Email
+    @Email(message = "Email inválido")
     private String email;
     private String telefone;
     private List<Manga> mangas;
 
     public List<Manga> getMangas(){
-        if(this.mangas == null){
-            this.mangas = new ArrayList<>(Collections.emptyList());
-            return this.mangas;
+        if(mangas == null){
+            mangas = new ArrayList<>(Collections.emptyList());
+            return mangas;
         }
-        return this.mangas;
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getCpf() {
-        return cpf;
-    }
-
-    public void setCpf(String cpf) {
-        this.cpf = cpf;
-    }
-
-    public String getLogin() {
-        return login;
-    }
-
-    public void setLogin(String login) {
-        this.login = login;
-    }
-
-    public String getSenha() {
-        return senha;
-    }
-
-    public void setSenha(String senha) {
-        this.senha = senha;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getTelefone() {
-        return telefone;
-    }
-
-    public void setTelefone(String telefone) {
-        this.telefone = telefone;
+        return mangas;
     }
 }

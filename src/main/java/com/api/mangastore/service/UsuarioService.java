@@ -2,6 +2,7 @@ package com.api.mangastore.service;
 
 import com.api.mangastore.entity.Manga;
 import com.api.mangastore.entity.Usuario;
+import com.api.mangastore.exceptions.ApiExceptionRequest;
 import com.api.mangastore.repository.UsuarioRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +23,7 @@ public class UsuarioService {
 
     public void updateUsuario(Usuario usuario) {
         Usuario findUsuario = usuarioRepository.findById(usuario.getId())
-                .orElseThrow(() -> new RuntimeException(String.format("Cannot find Usuario by ID %s", usuario.getId())));
+                .orElseThrow(() -> new ApiExceptionRequest(String.format("Cannot find Usuario by ID %s", usuario.getId())));
 
         findUsuario.setName(usuario.getName());
         findUsuario.setTelefone(usuario.getTelefone());
@@ -36,7 +37,7 @@ public class UsuarioService {
 
     public void addMangaUsuario(Manga manga, String cpfUsuario) {
         Usuario findUsuario = usuarioRepository.findByCpf(cpfUsuario)
-                .orElseThrow(() -> new RuntimeException(String.format("Cannot find Usuario by CPF %s", cpfUsuario)));
+                .orElseThrow(() -> new ApiExceptionRequest(String.format("Cannot find Usuario by CPF %s", cpfUsuario)));
         findUsuario.getMangas().add(manga);
         usuarioRepository.save(findUsuario);
     }

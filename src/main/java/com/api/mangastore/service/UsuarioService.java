@@ -7,6 +7,8 @@ import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @AllArgsConstructor
 public class UsuarioService {
@@ -32,12 +34,15 @@ public class UsuarioService {
         usuarioRepository.save(findUsuario);
     }
 
-    public void addMangaUsuario(Manga manga, long idUsuario) {
-        Usuario findUsuario = usuarioRepository.findById(idUsuario)
-                .orElseThrow(() -> new RuntimeException(String.format("Cannot find Usuario by ID %s", idUsuario)));
-
+    public void addMangaUsuario(Manga manga, String cpfUsuario) {
+        Usuario findUsuario = usuarioRepository.findByCpf(cpfUsuario)
+                .orElseThrow(() -> new RuntimeException(String.format("Cannot find Usuario by CPF %s", cpfUsuario)));
         findUsuario.getMangas().add(manga);
         usuarioRepository.save(findUsuario);
+    }
+
+    public List<Usuario> findAllUsuarios (){
+        return usuarioRepository.findAll();
     }
 
 }

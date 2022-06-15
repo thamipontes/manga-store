@@ -12,24 +12,24 @@ services:
       - /home/thamires/Desenvolvimento/Docker/Volumes/MongoDB:/data/db
     networks:
       - mongo-compose-network
-  manga:
-    build:
-      context: .
-      dockerfile: ./Dockerfile
-    restart: always
-    image: manga
-    environment:
-      - SPRING_PROFILES_ACTIVE=test, docker
-      - SPRING_DATA_MONGODB_URI=mongodb://root:manga@mongo:27017/manga?authSource=admin
-    ports:
-      - "8080:8080"
-      - "8083:8083"
-    depends_on:
-      - mongo
-    links:
-      - mongo
-    networks:
-      - mongo-compose-network
+#  manga:
+#    build:
+#      context: .
+#      dockerfile: ./Dockerfile
+#    restart: always
+#    image: manga
+#    environment:
+#      - SPRING_PROFILES_ACTIVE=test, docker
+#      - SPRING_DATA_MONGODB_URI=mongodb://root:manga@mongo:27017/manga?authSource=admin
+#    ports:
+#      - "8080:8080"
+#      - "8083:8083"
+#    depends_on:
+#      - mongo
+#    links:
+#      - mongo
+#    networks:
+#      - mongo-compose-network
   mongo-express:
     image: mongo-express
     ports:

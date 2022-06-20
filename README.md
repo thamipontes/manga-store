@@ -20,9 +20,8 @@ docker-compose up
 ```
 
 ## Third Step
-Call any endpoint from the documentation [Manga Store Swagger](swagger.yaml)
+Call any endpoint from the documentation [Manga Store Swagger](http://localhost:8080/swagger-ui.html)
 
-Ps: you can use Swagger Editor for better viewing - https://editor.swagger.io/
 
 ## Fourth Step
 To see the data on Database access:

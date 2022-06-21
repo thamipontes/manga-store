@@ -1,19 +1,6 @@
 # Description
-You need to use Java 11 for this project. You can install java and gradle using SDK manager.
-
-https://sdkman.io/
 
 ## First Step
-Run the command below for generate the file .jar: 
-```bash
-gradle bootjar
-```
-or
-```bash
-./gradlew bootjar
-```
-
-## Second Step
 Run the docker-compose (you need install docker-compose if you don't have yet)
 ```bash
 docker-compose up

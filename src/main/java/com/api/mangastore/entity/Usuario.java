@@ -2,6 +2,7 @@ package com.api.mangastore.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.validator.constraints.br.CPF;
 import org.springframework.data.annotation.Id;
@@ -16,6 +17,7 @@ import java.util.List;
 
 
 @AllArgsConstructor
+@NoArgsConstructor
 @Getter
 @Setter
 @Document("usuarios")

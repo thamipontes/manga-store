@@ -39,6 +39,7 @@ To stop the docker-compose use:
 docker-compose down
 ```
 
+Thanks!
 
 
 
